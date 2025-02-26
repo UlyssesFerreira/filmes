@@ -63,3 +63,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "typhoeus"
+gem "sidekiq", "~> 7.3"
