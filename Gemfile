@@ -66,3 +66,4 @@ end
 
 gem "typhoeus"
 gem "sidekiq", "~> 7.3"
+gem "sidekiq-failures"
