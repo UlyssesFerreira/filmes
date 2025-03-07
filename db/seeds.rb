@@ -1,9 +1,13 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Rails.logger.level = 1
+
+movies = File.open('movie_ids_02_23_2025.json').readlines
+movies_upsert = []
+movies.each do |movie|
+  movie_json = JSON.parse(movie)
+  movies_upsert << {tmdb_id: movie_json["id"], original_title: movie_json["original_title"]}
+end
+
+movies_upsert.each_slice(10000) do |movies_10000|
+  Movie.upsert_all(movies_10000, unique_by: :tmdb_id)
+  puts Movie.count
+end
