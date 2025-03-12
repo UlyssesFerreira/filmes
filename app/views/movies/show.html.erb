@@ -1,0 +1,13 @@
+<div class="">
+  <p class="text-4xl"><%= @movie.title %></p>
+  <p class="text-4xl"><%= @movie.rating %></p>
+  <p class="text-4xl"><%= @movie.runtime %></p>
+  <div class="">
+    <%= image_tag(@movie.poster_url, height: 200, width: 200, class: "object-contain") %>
+  </div>
+  <p class="text-xl"><%= @movie.description %></p>
+  <div class="flex gap-x-2">
+    <%= button_to("Marcar como visto", watched_movie_path(movie_id: @movie.id), class: "cursor-pointer bg-red-200 p-2") %>
+    <%= button_to("Marcar para assistir mais tarde", "", class: "cursor-pointer bg-red-200 p-2") %>
+  </div>
+</div>
