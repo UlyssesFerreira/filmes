@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  movie: one
+  user: one
+  watched_at: 2025-03-08 13:52:13
+  rating: MyString
+  comment: MyText
+
+two:
+  movie: two
+  user: two
+  watched_at: 2025-03-08 13:52:13
+  rating: MyString
+  comment: MyText

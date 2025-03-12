@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_07_000837) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_11_232305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_000837) do
     t.integer "runtime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "original_language"
+    t.jsonb "json_api"
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id", unique: true
   end
 
@@ -40,4 +42,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_07_000837) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  create_table "watched_movies", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "watched_at"
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_watched_movies_on_movie_id"
+    t.index ["user_id"], name: "index_watched_movies_on_user_id"
+  end
+
+  add_foreign_key "watched_movies", "movies"
+  add_foreign_key "watched_movies", "users"
 end
