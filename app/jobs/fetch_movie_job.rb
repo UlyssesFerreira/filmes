@@ -12,7 +12,9 @@ class FetchMovieJob < ApplicationJob
       poster_url: "https://image.tmdb.org/t/p/w500#{json.dig("poster_path")}",
       rating: json.dig("vote_average"),
       status: json.dig("status"),
-      runtime: json.dig("runtime")
+      runtime: json.dig("runtime"),
+      original_language: json.dig("original_language"),
+      json_api: json
     )
   end
 end

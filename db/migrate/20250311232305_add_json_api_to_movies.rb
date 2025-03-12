@@ -1,0 +1,5 @@
+class AddJsonApiToMovies < ActiveRecord::Migration[8.0]
+  def change
+    add_column :movies, :json_api, :jsonb
+  end
+end
