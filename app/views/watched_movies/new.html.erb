@@ -1,0 +1,19 @@
+<div class="text-white">
+  <p class="text-4xl">Marcar como visto</p>
+  <p class="text-2xl"><%= @movie.title %></p>
+  <%= form_with url: movie_watched_movie_path(@movie), class: "" do |form| %>
+    <div>  
+      <%= form.label :watched_at, "Assistido em" %>
+      <%= form.date_field :watched_at, value: Date.today, class: "bg-white text-black" %>
+    </div>
+    <div>
+      <%= form.label :rating, "Sua avaliação" %>
+      <%= form.number_field :rating, value: 1, in: 1..10, step: 1, class: "bg-white text-black" %>
+    </div>
+    <div>
+      <%= form.label :comment, "Adicione um comentário" %>
+      <%= form.text_area :comment, cols: 30, rows: 7, class: "block bg-white text-black" %>
+    </div>
+    <%= form.submit "Salvar", class: "cursor-pointer bg-red-200 p-2" %>
+  <% end %>
+</div>
