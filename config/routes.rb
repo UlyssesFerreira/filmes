@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   root "home#index"
-  resources :movies
+  resources :movies do
   resource :watched_movie
+  end
 end
