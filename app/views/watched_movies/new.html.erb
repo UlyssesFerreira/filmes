@@ -4,7 +4,7 @@
   <%= form_with url: movie_watched_movie_path(@movie), class: "" do |form| %>
     <div>  
       <%= form.label :watched_at, "Assistido em" %>
-      <%= form.date_field :watched_at, value: Date.today, class: "bg-white text-black" %>
+      <%= form.date_field :watched_at, value: Date.today, max: Date.today, class: "bg-white text-black" %>
     </div>
     <div>
       <%= form.label :rating, "Sua avaliação" %>
