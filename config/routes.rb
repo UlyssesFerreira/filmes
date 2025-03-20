@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   root "home#index"
   resources :movies do
     resource :watched_movie
+    resource :favorite
   end
 end

@@ -2,6 +2,9 @@ class Movie < ApplicationRecord
   has_many :watched_movies
   has_many :users, through: :watched_movies
 
+  has_many :favorites
+  has_many :users, through: :favorites
+
   def self.update_in_batch size=500
     Movie.where(original_language: nil).limit(size).each do |movie|
       FetchMovieJob.perform_later(movie.id)
@@ -18,7 +21,7 @@ class Movie < ApplicationRecord
   end
 
   def mark_as_watched(user:, watched_at: DateTime.now, rating: nil, comment: "")
-    return false if already_on_watchlist?(user)
+    return false if already_on_watched_list?(user)
     watched_movies.create(
       user_id: user.id,
       watched_at: watched_at,
@@ -27,7 +30,12 @@ class Movie < ApplicationRecord
     )
   end
 
-  def already_on_watchlist?(user)
+  def favorite(user)
+    fav = favorites.new(user_id: user.id)
+    fav.save
+  end
+
+  def already_on_watched_list?(user)
     user.movies.include?(self)
   end
 end
