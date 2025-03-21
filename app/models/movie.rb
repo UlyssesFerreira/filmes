@@ -3,7 +3,7 @@ class Movie < ApplicationRecord
   has_many :users, through: :watched_movies
 
   has_many :favorites
-  has_many :users, through: :favorites
+  has_many :favorited_by_users, through: :favorites, source: :user
 
   def self.update_in_batch size=500
     Movie.where(original_language: nil).limit(size).each do |movie|
@@ -33,6 +33,10 @@ class Movie < ApplicationRecord
   def favorite(user)
     fav = favorites.new(user_id: user.id)
     fav.save
+  end
+
+  def remove_favorite(user)
+    user.favorites.find_by(movie_id: id).delete
   end
 
   def already_on_watched_list?(user)

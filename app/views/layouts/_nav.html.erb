@@ -6,6 +6,7 @@
     </svg>
   </a>
   <a href="<%= my_movies_path %>" class="text-white font-semibold text-lg">Meus Filmes</a>
+  <a href="<%= my_favorites_path %>" class="text-white font-semibold text-lg">Favoritos</a>
   <% if user_signed_in? %>
     <%= button_to "Sair", destroy_user_session_path, method: :delete, class: "text-white font-semibold text-lg cursor-pointer" %>
   <% else %>
