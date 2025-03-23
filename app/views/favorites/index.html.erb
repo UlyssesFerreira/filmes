@@ -1,5 +1,8 @@
-<div class="text-white">
-  <% @fav_movies.each do |fav| %>
-    <p><%= fav.movie.title %></p>
-  <% end %>
+<div class="mt-10 p-12">
+  <p class="text-white text-4xl font-semibold mb-4">Favoritos</p>
+  <div class="grid grid-cols-4 gap-4">
+    <% @fav_movies.each do |fav| %>
+      <%= render "movies/card", movie: fav.movie %>
+    <% end %>
+  </div>
 </div>
