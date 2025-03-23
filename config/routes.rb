@@ -3,6 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users
   get "my_movies", to: "watched_movies#index"
+  get "my_favorites", to: "favorites#index"
 
   get "up" => "rails/health#show", as: :rails_health_check
   mount Sidekiq::Web => "/sidekiq"
