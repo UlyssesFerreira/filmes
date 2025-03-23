@@ -1,15 +1,19 @@
-<div class="">
-  <% @user_movies.each do |watched_movie| %>
-    <div class="text-white mb-8">
-      <p><%= watched_movie.movie.title %></p>
-      <p class="flex items-center">
-        <%= watched_movie.rating %>/10
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="yellow" class="size-3">
-          <path fill-rule="evenodd" d="M8 1.75a.75.75 0 0 1 .692.462l1.41 3.393 3.664.293a.75.75 0 0 1 .428 1.317l-2.791 2.39.853 3.575a.75.75 0 0 1-1.12.814L7.998 12.08l-3.135 1.915a.75.75 0 0 1-1.12-.814l.852-3.574-2.79-2.39a.75.75 0 0 1 .427-1.318l3.663-.293 1.41-3.393A.75.75 0 0 1 8 1.75Z" clip-rule="evenodd" />
-        </svg>
-      </p>
-      <p><%= watched_movie.watched_at.strftime("%d/%m/%Y") %></p>
-      <p><%= watched_movie.comment %></p>
-    </div>
-  <% end %>
+<div class="mt-10 p-12">
+  <div class="grid grid-cols-4 gap-4">
+    <% @user_movies.each do |watched_movie| %>
+      <div class="bg-white rounded-lg">
+        <div class="p-4">
+          <p class="text-xs font-normal">Assistido em <%= watched_movie.watched_at.strftime("%d/%m/%Y") %></p>
+          <p class="font-semibold text-2xl"><%= watched_movie.movie.title %> <span class="text-base font-normal"><%= watched_movie.movie.release_date.year %></span></p>
+          <p class="flex items-center">
+            <span class="text-lg font-medium"><%= watched_movie.rating %>/10</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="yellow" class="size-3">
+              <path fill-rule="evenodd" d="M8 1.75a.75.75 0 0 1 .692.462l1.41 3.393 3.664.293a.75.75 0 0 1 .428 1.317l-2.791 2.39.853 3.575a.75.75 0 0 1-1.12.814L7.998 12.08l-3.135 1.915a.75.75 0 0 1-1.12-.814l.852-3.574-2.79-2.39a.75.75 0 0 1 .427-1.318l3.663-.293 1.41-3.393A.75.75 0 0 1 8 1.75Z" clip-rule="evenodd" />
+            </svg>
+          </p>
+          <p><%= watched_movie.comment %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
