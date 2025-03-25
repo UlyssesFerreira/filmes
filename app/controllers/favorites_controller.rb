@@ -1,27 +1,25 @@
 class FavoritesController < ApplicationController
   def index
-    @fav_movies = current_user.favorites
+    @fav_movies = current_user.favorites.order(created_at: :desc)
   end
 
   def create
     movie = Movie.find(params[:movie_id])
     if movie && movie.favorite(current_user)
-      flash[:notice] = "#{movie.title} adicionado aos favoritos"
-      redirect_to my_favorites_path
+      flash[:success] = "#{movie.title} adicionado aos favoritos"
     else
-      flash[:notice] = "Erro ao favoritar"
-      redirect_to root_path
+      flash[:error] = "Erro ao favoritar"
     end
+    redirect_to my_favorites_path
   end
 
   def destroy
     movie = Movie.find(params[:movie_id])
     if movie && movie.remove_favorite(current_user)
-      flash[:notice] = "#{movie.title} removido dos favoritos"
-      redirect_to my_favorites_path
+      flash[:success] = "#{movie.title} removido dos favoritos"
     else
-      flash[:notice] = "Erro ao remover dos favoritos"
-      redirect_to root_path
+      flash[:error] = "Erro ao remover dos favoritos"
     end
+    redirect_to my_favorites_path
   end
 end

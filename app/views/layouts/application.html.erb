@@ -25,8 +25,7 @@
   <body class="bg-stone-900">
     <%= render "layouts/nav" %>
     <main class="">
-      <p class="notice text-white"><%= notice %></p>
-      <p class="alert text-white"><%= alert %></p>
+      <%= render "layouts/flash" %>
       <%= yield %>
     </main>
   </body>
