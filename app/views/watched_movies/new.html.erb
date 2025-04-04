@@ -1,19 +1,19 @@
-<div class="text-white">
+<div class="mx-auto max-w-md bg-white p-4 rounded-lg my-10">
   <p class="text-4xl">Marcar como visto</p>
-  <p class="text-2xl"><%= @movie.title %></p>
-  <%= form_with url: movie_watched_movie_path(@movie), class: "" do |form| %>
+  <p class="text-2xl my-4 font-bold"><%= @movie.title %> <span class="text-base font-semibold text-gray-800">(<%= @movie.release_date.year %>)</span></p>
+  <%= form_with url: movie_watched_movie_path(@movie), class: "grid grid-col-1 gap-y-2" do |form| %>
     <div>  
       <%= form.label :watched_at, "Assistido em" %>
-      <%= form.date_field :watched_at, value: Date.today, max: Date.today, class: "bg-white text-black" %>
+      <%= form.date_field :watched_at, value: Date.today, max: Date.today, class: "ring-1 rounded-md px-1" %>
     </div>
     <div>
       <%= form.label :rating, "Sua avaliação" %>
-      <%= form.number_field :rating, value: 1, in: 1..10, step: 1, class: "bg-white text-black" %>
+      <%= form.number_field :rating, value: 1, in: 1..10, step: 1, class: "ring-1 rounded-md" %>
     </div>
     <div>
       <%= form.label :comment, "Adicione um comentário" %>
-      <%= form.text_area :comment, cols: 30, rows: 7, class: "block bg-white text-black" %>
+      <%= form.text_area :comment, cols: 30, rows: 7, class: "block ring-1 rounded-md p-1" %>
     </div>
-    <%= form.submit "Salvar", class: "cursor-pointer bg-red-200 p-2" %>
+    <%= form.submit "Salvar", class: "mt-2 w-full cursor-pointer bg-slate-800 rounded-md py-1 cursor-pointer text-white font-medium" %>
   <% end %>
 </div>

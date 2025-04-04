@@ -42,4 +42,8 @@ class Movie < ApplicationRecord
   def already_on_watched_list?(user)
     user.movies.include?(self)
   end
+
+  def runtime_in_hours
+    "#{runtime/60}h #{runtime%60}m"
+  end
 end
