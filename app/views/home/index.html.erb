@@ -1,5 +1,5 @@
 <div class="mt-10 p-12">
-  <div class="grid grid-cols-4 gap-4">
+  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
     <% @best_rating_movies.each do |movie| %>
       <%= render "movies/card", movie: movie %>
     <% end %>
