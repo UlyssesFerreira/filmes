@@ -5,6 +5,21 @@ class Movie < ApplicationRecord
   has_many :favorites
   has_many :favorited_by_users, through: :favorites, source: :user
 
+  scope :downloaded, -> { where.not(rating: nil) }
+  scope :order_by_rating, -> { order(rating: :desc) }
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["original_title", "title"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
+  def self.ransackable_scopes(auth_object = nil)
+    %i[downloaded order_by_rating]
+  end
+
   def self.update_in_batch size=500
     Movie.where(original_language: nil).limit(size).each do |movie|
       FetchMovieJob.perform_later(movie.id)
