@@ -5,8 +5,10 @@ class Movie < ApplicationRecord
   has_many :favorites
   has_many :favorited_by_users, through: :favorites, source: :user
 
-  scope :downloaded, -> { where.not(rating: nil) }
-  scope :order_by_rating, -> { order(rating: :desc) }
+  def self.search query
+    @search = Movie.ransack(title_or_original_title_cont: query)
+    @search.result.order(rating: :desc, original_title: :asc)
+  end
 
   def self.ransackable_attributes(auth_object = nil)
     ["original_title", "title"]

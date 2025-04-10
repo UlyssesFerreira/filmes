@@ -1,6 +1,15 @@
 class SearchController < ApplicationController
+  PER_PAGE = 8
+
   def index
-    @search = Movie.ransack(title_or_original_title_cont: params[:query], downloaded: true, order_by_rating: true)
-    @movies = @search.result.limit(8)
+    @result = Movie.search(params[:query])
+    # @current_page = params[:page] || 1
+    # @total_pages = @result.count / PER_PAGE
+    # @movies = @result.offset(@current_page*PER_PAGE).limit(PER_PAGE)
+
+    @total_movies = @result.count
+    @current_page = (params[:page] || 1).to_i.abs
+    @total_pages = (@total_movies.to_f / PER_PAGE).ceil
+    @movies = @result.offset((@current_page - 1) * PER_PAGE).limit(PER_PAGE)
   end
 end

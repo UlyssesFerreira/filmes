@@ -8,4 +8,22 @@
       <%= render "movies/card", movie: movie %>
     <% end %>
   </div>
+  <div class="flex items-center border-gray-200 py-3 gap-x-4 justify-end" aria-label="Pagination">
+    <div class="">
+      <p class="text-sm text-white">
+        Página
+        <span class="font-medium"><%= @current_page %></span>
+        de
+        <span class="font-medium"><%= @total_pages %></span>
+      </p>
+    </div>
+    <div>
+      <% if @current_page != 1 %>
+        <a href="<%= search_index_path(query: params[:query], page: @current_page - 1) %>" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">Anterior</a>
+      <% end %>
+      <% if @current_page != @total_pages %>
+        <a href="<%= search_index_path(query: params[:query], page: @current_page + 1) %>" class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">Próxima</a>
+      <% end %>
+    </div>
+  </div>
 </div>
