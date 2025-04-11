@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resource :watched_movie
     resource :favorite
   end
-  resources :search
+  resources :search, only: [:index]
 end
