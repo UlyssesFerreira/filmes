@@ -11,7 +11,7 @@ class Movie < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["original_title", "title"]
+    [ "original_title", "title" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
