@@ -19,7 +19,7 @@ class Movie < ApplicationRecord
   end
 
   def self.ransackable_scopes(auth_object = nil)
-    %i[downloaded order_by_rating]
+    []
   end
 
   def self.update_in_batch size=500
