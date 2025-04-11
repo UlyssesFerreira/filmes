@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   has_many :favorites
   has_many :favorited_by_users, through: :favorites, source: :user
 
-  def self.search query
+  def self.search(query)
     @search = Movie.ransack(title_or_original_title_cont: query)
     @search.result.order(rating: :desc, original_title: :asc)
   end
@@ -22,7 +22,7 @@ class Movie < ApplicationRecord
     []
   end
 
-  def self.update_in_batch size=500
+  def self.update_in_batch(size=500)
     Movie.where(original_language: nil).limit(size).each do |movie|
       FetchMovieJob.perform_later(movie.id)
     end
