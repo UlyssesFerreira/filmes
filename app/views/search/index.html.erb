@@ -1,0 +1,29 @@
+<div class="mt-10 p-12">
+  <div class="flex justify-between">
+    <p class="text-2xl text-white">Resultados para "<%= params[:query] %>"</p>
+    <%= render "search/search_bar" %>
+  </div>
+  <div class="mt-10 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+    <% @movies.each do |movie| %>
+      <%= render "movies/card", movie: movie %>
+    <% end %>
+  </div>
+  <div class="flex items-center border-gray-200 py-3 gap-x-4 justify-end" aria-label="Pagination">
+    <div class="">
+      <p class="text-sm text-white">
+        Página
+        <span class="font-medium"><%= @current_page %></span>
+        de
+        <span class="font-medium"><%= @total_pages %></span>
+      </p>
+    </div>
+    <div>
+      <% if @current_page != 1 %>
+        <a href="<%= search_index_path(query: params[:query], page: @current_page - 1) %>" class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">Anterior</a>
+      <% end %>
+      <% if @current_page != @total_pages %>
+        <a href="<%= search_index_path(query: params[:query], page: @current_page + 1) %>" class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">Próxima</a>
+      <% end %>
+    </div>
+  </div>
+</div>
