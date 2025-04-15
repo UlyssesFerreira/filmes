@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   get "my_movies", to: "watched_movies#index"
   get "my_favorites", to: "favorites#index"
 

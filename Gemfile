@@ -65,7 +65,13 @@ group :test do
 end
 
 gem "typhoeus"
+
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-failures"
+
 gem "devise", "~> 4.9"
+gem "omniauth"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+
 gem "ransack"
