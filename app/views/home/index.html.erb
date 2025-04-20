@@ -3,7 +3,7 @@
     <%= render "search/search_bar" %>
   </div>
   <div class="mt-10 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-    <% @best_rating_movies.each do |movie| %>
+    <% @movies.each do |movie| %>
       <%= render "movies/card", movie: movie %>
     <% end %>
   </div>
