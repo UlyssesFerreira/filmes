@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   root "home#index"
   resources :movies do
-    resource :watched_movie
-    resource :favorite
+    resource :watched_movie, only: [:new, :create]
+    resource :favorite, only: [:create, :destroy]
   end
   resources :search, only: [:index]
 end
