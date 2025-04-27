@@ -1,8 +1,12 @@
 <div class="p-12">
-  <div class="mt-10 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-    <p class="text-white text-4xl font-semibold mb-4">Favoritos</p>
-    <% @fav_movies.each do |fav| %>
-      <%= render "movies/card", movie: fav.movie %>
-    <% end %>
-  </div>
+  <p class="text-white text-4xl font-semibold mb-4">Favoritos</p>
+  <% if @fav_movies.blank? %>
+    <p class="text-base text-gray-400">Você não favoritou nenhum filme</p>
+  <% else %>
+    <div class="mt-10 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+      <% @fav_movies.each do |fav| %>
+        <%= render "movies/card", movie: fav.movie %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
