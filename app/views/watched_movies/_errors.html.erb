@@ -1,7 +1,7 @@
-<% if resource.errors.any? %>
+<% if @review && @review.errors.present? %>
   <div class="bg-red-50 px-3 p-2 font-medium rounded-lg mb-4">
     <ul class="text-red-800 text-sm list-disc space-y-1 pl-5">
-      <% resource.errors.each do |error| %>
+      <% @review.errors.each do |error| %>
         <li><%= error.full_message %></li>
       <% end %>
     </ul>

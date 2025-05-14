@@ -38,8 +38,7 @@ class Movie < ApplicationRecord
   end
 
   def mark_as_watched(user:, watched_at: DateTime.now, rating: nil, comment: "")
-    return false if already_on_watched_list?(user)
-    watched_movies.create(
+    watched_movies.new(
       user_id: user.id,
       watched_at: watched_at,
       rating: rating,

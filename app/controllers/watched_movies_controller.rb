@@ -10,14 +10,13 @@ class WatchedMoviesController < ApplicationController
   end
 
   def create
-    movie = Movie.find_by(id: params[:movie_id])
-    if movie
-      movie.mark_as_watched(user: current_user, watched_at: params[:watched_at], rating: params[:rating], comment: params[:comment])
+    @movie = Movie.find_by(id: params[:movie_id])
+    @review = @movie.mark_as_watched(user: current_user, watched_at: params[:watched_at], rating: params[:rating], comment: params[:comment])
+    if @movie && @review.save
       flash[:notice] = "Adicionado a lista de assistidos!"
       redirect_to my_movies_path
     else
-      flash[:error] = "Erro ao marcar como assistido!"
-      redirect_to home_path
+      render :new, status: :unprocessable_entity
     end
   end
 end
