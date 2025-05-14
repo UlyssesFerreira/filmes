@@ -34,10 +34,15 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # context "comportamento" do
-  #   it "autentica com senha certa" do
-  #     user = create(:user, password: "senhacerta123")
-  #     expect(user.authenticate("senhacerta123")).to be_valid
-  #   end
-  # end
+  context "comportamento" do
+    it "autentica com senha certa" do
+      user = create(:user, password: "senhacerta123")
+      expect(user.valid_password?("senhacerta123")).to be_truthy
+    end
+
+    it "não autentica com senha errada" do
+      user = create(:user, password: "senhacerta123")
+      expect(user.valid_password?("senhaerrada123")).to be_falsey
+    end
+  end
 end
