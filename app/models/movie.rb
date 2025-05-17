@@ -47,8 +47,7 @@ class Movie < ApplicationRecord
   end
 
   def favorite(user)
-    fav = favorites.new(user_id: user.id)
-    fav.save
+    favorites.new(user_id: user.id)
   end
 
   def remove_favorite(user)

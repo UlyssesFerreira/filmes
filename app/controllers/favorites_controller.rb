@@ -5,7 +5,8 @@ class FavoritesController < ApplicationController
 
   def create
     movie = Movie.find(params[:movie_id])
-    if movie && movie.favorite(current_user)
+    fav = movie.favorite(current_user)
+    if movie && fav.save
       flash[:success] = "#{movie.title} adicionado aos favoritos"
     else
       flash[:error] = "Erro ao favoritar"
