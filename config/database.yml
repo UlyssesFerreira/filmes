@@ -12,7 +12,11 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    url: <%= Rails.application.credentials.database_url %>
+    database: filmes_production
+    username: filmes
+    password: <%= ENV["DB_PASSWORD"] %>
+    host: <%= ENV["DB_HOST"] %>
+    port: 5432
   cache:
     <<: *primary_production
     database: filmes_production_cache
