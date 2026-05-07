@@ -261,7 +261,12 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :google_oauth2, Rails.application.credentials.google_auth.client_id, Rails.application.credentials.google_auth.client_secret, {}
+  client_id = Rails.application.credentials.dig(:google_auth, :client_id)
+  client_secret = Rails.application.credentials.dig(:google_auth, :client_secret)
+
+  if client_id.present? && client_secret.present?
+    config.omniauth :google_oauth2, client_id, client_secret
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
