@@ -38,3 +38,4 @@
 *.txt
 movie_ids_02_23_2025.json
 deploy.sh
+/.kamal/secrets
