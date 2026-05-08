@@ -70,7 +70,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start server via Thruster by default, this can be overwritten at runtime
 EXPOSE 3000
 
-HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=3 \
-  CMD curl -f http://localhost:3000/up || exit 1
-
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
