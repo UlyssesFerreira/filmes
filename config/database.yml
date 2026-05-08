@@ -14,9 +14,8 @@ production:
     <<: *default
     database: filmes_production
     username: filmes
-    password: <%= ENV["DB_PASSWORD"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
     host: <%= ENV["DB_HOST"] %>
-    port: 5432
   cache:
     <<: *primary_production
     database: filmes_production_cache
