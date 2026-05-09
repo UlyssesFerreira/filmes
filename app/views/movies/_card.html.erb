@@ -2,7 +2,7 @@
   <% if current_user %>
     <%= render "movies/favorite_button", movie: movie %>
   <% end %>
-  <a href="<%= movie_path(movie) %>">
+  <%= link_to movie_path(movie), data: { turbo_frame: "_top" } do %>
     <div class="p-4">
       <div class="h-48 w-full">
         <%= image_tag(movie.poster_url, class: "h-full w-full rounded-lg object-contain") %>
@@ -15,5 +15,5 @@
         <p class="mt-1 font-medium text-lg"><%= movie.release_date.year %></p>
       <% end %>
     </div>
-  </a>
+  <% end %>
 </div>
